@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bilal Amin Nidoni | Tax Consultant & Freelancer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --bg-dark: #0a0b0c;
+            --bg-card: #141618;
+            --accent: #C8A8A0; /* Dusty Rose / Mauve */
+            --accent-muted: rgba(200, 168, 160, 0.1);
+            --text-main: #f1f5f9;
+            --text-dim: #94a3b8;
+            --nav-bg: rgba(10, 11, 12, 0.9);
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+
+        /* --- Scroll Animation --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: var(--transition);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Navigation --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.2rem 10%;
+            background: var(--nav-bg);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(200, 168, 160, 0.1);
+        }
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--accent);
+            text-decoration: none;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dim);
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: var(--transition);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        /* --- Hero Section --- */
+        #hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 10%;
+            background: radial-gradient(circle at 50% 50%, rgba(200, 168, 160, 0.08) 0%, transparent 70%);
+        }
+
+        .hero-name {
+            font-size: clamp(3rem, 8vw, 5rem);
+            margin-bottom: 0.5rem;
+            background: linear-gradient(to right, #ffffff, var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-title {
+            font-size: 1.1rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            margin-bottom: 2rem;
+        }
+
+        .hero-desc {
+            max-width: 700px;
+            color: var(--text-dim);
+            font-size: 1.1rem;
+        }
+
+        /* --- Sections --- */
+        section {
+            padding: 100px 10%;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 3.5rem;
+            text-align: center;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 2px;
+            background: var(--accent);
+            margin: 15px auto;
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            color: var(--text-dim);
+            font-size: 1.1rem;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-card {
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid rgba(200, 168, 160, 0.05);
+            transition: var(--transition);
+        }
+
+        .skill-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+            background: var(--accent-muted);
+        }
+
+        .skill-card i {
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .timeline {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 1px;
+            height: 100%;
+            background: rgba(200, 168, 160, 0.2);
+        }
+
+        .timeline-item {
+            padding-left: 35px;
+            margin-bottom: 3.5rem;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -5px;
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            background: var(--accent);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--accent);
+        }
+
+        .timeline-date {
+            color: var(--accent);
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-item ul {
+            list-style: none;
+            margin-top: 10px;
+            color: var(--text-dim);
+            font-size: 0.95rem;
+        }
+
+        .timeline-item li {
+            margin-bottom: 5px;
+            position: relative;
+            padding-left: 15px;
+        }
+
+        .timeline-item li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: 12px;
+            border-bottom: 3px solid transparent;
+            transition: var(--transition);
+        }
+
+        .project-card:hover {
+            border-bottom-color: var(--accent);
+            transform: translateY(-5px);
+            background: var(--accent-muted);
+        }
+
+        .project-card h3 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .project-card p {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+        }
+
+        .contact-container {
+            text-align: center;
+        }
+
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--accent);
+            color: #000;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            margin-top: 2rem;
+            transition: var(--transition);
+        }
+
+        .contact-btn:hover {
+            transform: scale(1.05);
+            filter: brightness(1.1);
+            box-shadow: 0 0 20px rgba(200, 168, 160, 0.3);
+        }
+
+        .social-links {
+            margin-top: 3rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2.5rem;
+        }
+
+        .social-links a {
+            color: var(--text-dim);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .social-links a:hover {
+            color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .icon-text {
+            font-family: 'Inter', sans-serif;
+            line-height: 1;
+        }
+
+        footer {
+            padding: 3rem;
+            text-align: center;
+            color: var(--text-dim);
+            font-size: 0.8rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            section { padding: 80px 5%; }
+            .hero-name { font-size: 3rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#" class="logo">Bilal Amin</a>
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#experience">Experience</a>
+            <a href="#projects">Freelance</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <section id="hero">
+        <h1 class="hero-name">Bilal Amin Nidoni</h1>
+        <p class="hero-title">Tax Consultant & Expert Freelancer</p>
+        <p class="hero-desc">Specializing in Income Tax, GST, and high-precision Excel data solutions for businesses and individuals.</p>
+    </section>
+
+    <section id="about" class="reveal">
+        <h2 class="section-title">Professional Profile</h2>
+        <div class="about-content">
+            <p>I am a dedicated Tax Consultant currently working at a CA firm, specializing in ITR filing, GST return filing, accounting, and Tally ERP. Beyond my core consultancy, I am an active freelancer helping clients with complex Excel data cleaning, transformation, and professional document formatting.</p>
+        </div>
+    </section>
+
+    <section id="skills" class="reveal">
+        <h2 class="section-title">Core Competencies</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <i data-lucide="file-text" size="32"></i>
+                <h3>Taxation</h3>
+                <p style="font-size: 0.8rem; color: var(--text-dim);">ITR & GST Filing Experts</p>
+            </div>
+            <div class="skill-card">
+                <i data-lucide="table" size="32"></i>
+                <h3>Excel Mastery</h3>
+                <p style="font-size: 0.8rem; color: var(--text-dim);">Data Analysis & Templates</p>
+            </div>
+            <div class="skill-card">
+                <i data-lucide="calculator" size="32"></i>
+                <h3>Accounting</h3>
+                <p style="font-size: 0.8rem; color: var(--text-dim);">Tally ERP & Bookkeeping</p>
+            </div>
+            <div class="skill-card">
+                <i data-lucide="database" size="32"></i>
+                <h3>Data Mgmt</h3>
+                <p style="font-size: 0.8rem; color: var(--text-dim);">Entry & PDF Conversion</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="reveal">
+        <h2 class="section-title">Work Experience</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <p class="timeline-date">Currently Working</p>
+                <h3>Tax Consultant | CA Firm</h3>
+                <ul>
+                    <li>Filing ITR for individuals, firms, and businesses.</li>
+                    <li>GST preparation (GSTR-1, GSTR-3B) and reconciliation.</li>
+                    <li>Bookkeeping and accounting using Tally ERP.</li>
+                </ul>
+            </div>
+            <div class="timeline-item">
+                <p class="timeline-date">Ongoing</p>
+                <h3>Professional Freelancer | Self-Employed</h3>
+                <ul>
+                    <li>Excel data cleaning and business transformation.</li>
+                    <li>High-accuracy data entry and database management.</li>
+                    <li>Custom Excel dashboard and report design.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="reveal">
+        <h2 class="section-title">Freelance Services</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <h3>Excel Analytics</h3>
+                <p>Advanced data cleaning, analysis, and custom automated templates for business efficiency.</p>
+            </div>
+            <div class="project-card">
+                <h3>PDF to Excel</h3>
+                <p>Structured conversion of financial or tabular PDF data into editable Excel sheets with validation.</p>
+            </div>
+            <div class="project-card">
+                <h3>Document Design</h3>
+                <p>Professional formatting and layout optimization using MS Word for reports and documentation.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="education" class="reveal">
+        <h2 class="section-title">Education</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <p class="timeline-date">Diploma</p>
+                <h3>Diploma in Taxation (D.I.T)</h3>
+                <p style="color: var(--text-dim);">Specialized professional diploma in Income Tax law and compliance.</p>
+            </div>
+            <div class="timeline-item">
+                <p class="timeline-date">Graduate</p>
+                <h3>Bachelor of Commerce (B.Com)</h3>
+                <p style="color: var(--text-dim);">Commerce Graduate with a focus on Accounting and Taxation.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="reveal">
+        <h2 class="section-title">Get In Touch</h2>
+        <div class="contact-container">
+            <p style="color: var(--text-dim);">Available for freelance projects and professional consulting.</p>
+            <a href="mailto:bilalnidoni2@gmail.com?subject=Inquiry regarding Professional Tax/Excel Services&body=Hello Bilal, I came across your portfolio and I am interested in discussing a project/consultancy with you. Please let me know your availability for a brief discussion. Regards." class="contact-btn">
+                <i data-lucide="mail"></i> Email Me Now
+            </a>
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/bilal-amin-" target="_blank" title="LinkedIn">
+                    <span class="icon-text">in</span>
+                </a>
+                
+                <a href="https://www.fiverr.com/s/8zXVNgz" target="_blank" title="Fiverr">
+                    <span class="icon-text">fi</span>
+                </a>
+                
+                <a href="https://linktr.ee/Bilal.Amin" target="_blank" title="Linktree">
+                    <i data-lucide="external-link" size="24"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Bilal Amin Nidoni. All rights reserved.</p>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+        const reveal = () => {
+            document.querySelectorAll('.reveal').forEach(el => {
+                const windowHeight = window.innerHeight;
+                const elementTop = el.getBoundingClientRect().top;
+                if (elementTop < windowHeight - 100) {
+                    el.classList.add('active');
+                }
+            });
+        };
+        window.addEventListener('scroll', reveal);
+        reveal();
+    </script>
+</body>
+</html>
